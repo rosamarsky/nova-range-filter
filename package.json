@@ -1,0 +1,26 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "npm run development",
+    "development": "mix",
+    "watch": "mix watch",
+    "watch-poll": "mix watch -- --watch-options-poll=1000",
+    "hot": "mix watch --hot",
+    "prod": "npm run production",
+    "production": "mix --production",
+    "nova:install": "npm --prefix='../../vendor/laravel/nova' ci"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.2.22",
+    "laravel-mix": "^6.0.41",
+    "postcss": "^8.3.11",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.57.1",
+    "sass-loader": "^12.6.0",
+    "vue-loader": "^16.8.3"
+  },
+  "dependencies": {
+    "vue": "^3.2.45",
+    "vue-slider-component": "^4.1.0-beta.7"
+  }
+}
