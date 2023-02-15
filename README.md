@@ -36,8 +36,8 @@ class Invoice extends Resource
     {
         return [
             RangeFilter::make('Amount', 'amount', [
-                'min' => floor(InvoiceModel::query()->min()),
-                'max' => ceil(InvoiceModel::query()->max()),
+                'min' => floor(InvoiceModel::query()->min('column')),
+                'max' => ceil(InvoiceModel::query()->max('column')),
                 'interval' => 10,
             ]),
         ];
