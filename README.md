@@ -11,7 +11,7 @@ This package based on [vue-slider-component](https://www.npmjs.com/package/vue-s
 ![RangeFilter](https://raw.githubusercontent.com/rosamarsky/nova-range-filter/master/resources/img/table-screen.png)
 
 #  Requirements
- - `php`: `>=8.1`
+ - `php`: `>=8.0`
  - `laravel/nova`: `^4.0`
 
 # Installation
@@ -32,7 +32,7 @@ use App\Models\Invoice as InvoiceModel;
 
 class Invoice extends Resource
 {
-    public function filters(Request $request)
+    public function filters(Request $request): array
     {
         return [
             RangeFilter::make('Amount', 'amount', [
