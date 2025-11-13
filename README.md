@@ -4,31 +4,34 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/rosamarsky/nova-range-filter)](https://packagist.org/packages/rosamarsky/nova-range-filter)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-
-A Laravel Nova filter for picking range between a min/max value. 
-This package based on [vue-slider-component](https://www.npmjs.com/package/vue-slider-component).
+A clean and simple **Laravel Nova filter** for selecting values between a minimum and maximum range.  
+Built on top of [vue-slider-component](https://www.npmjs.com/package/vue-slider-component).
 
 ![RangeFilter](https://raw.githubusercontent.com/rosamarsky/nova-range-filter/master/resources/img/table-screen.png)
 
-#  Requirements
+---
+
+## ⚙️ Requirements
  - `php`: `>=8.0`
- - `laravel/nova`: `^4.0`
+ - `laravel/nova`: `^4.0|^5.0`
 
-# Installation
+---
 
-You can install the package via composer:
+## 📦 Installation
 
-```
+```bash
 composer require rosamarsky/nova-range-filter
 ```
 
-## Usage
+---
 
-Use it as usual on the filters methods within your resource class:
+## 🚀 Usage
+
+Register it inside your Nova resource as usual:
 
 ```php
 use Rosamarsky\RangeFilter\RangeFilter;
-use App\Models\Invoice as InvoiceModel;
+use App\Models\Invoice;
 
 class Invoice extends Resource
 {
@@ -36,28 +39,31 @@ class Invoice extends Resource
     {
         return [
             RangeFilter::make('Amount', 'amount', [
-                'min' => floor(InvoiceModel::query()->min()),
-                'max' => ceil(InvoiceModel::query()->max()),
+                'min' => floor(Invoice::query()->min('amount')),
+                'max' => ceil(Invoice::query()->max('amount')),
                 'interval' => 10,
             ]),
         ];
     }
 }
 ```
-> The interval value must be greater than 0 and can be divisible by (max - min).
+> ⚠️ The interval value must be greater than 0 and divide evenly into (max - min).
 
-You also can provide next options:
-- `tooltip` - control tooltip display. Default `active`.
-  - `none` - never display;
-  - `always` - always display;
-  - `hover` - display when the slider get hover;
-  - `focus` - display when the slider has focus;
-  - `active` - display when tooltip have both hover and focus.
-- `minRange`, `maxRange` - minimum and maximum distance between sliders.
-- `clickable` - allow changes to value by clicking. Default - `true`;
-- `disabled` - enable/disable the component. Default - `true`;
-- `label` - the postfix of displayed values for marks and tooltips.
+---
 
-## License
+## 🧱 Available Options
 
-The MIT License (MIT). Please see [License File](https://raw.githubusercontent.com/rosamarsky/nova-range-filter/master/LICENSE) for more information.
+| Option        | Description                                                        | Default   |
+|---------------|--------------------------------------------------------------------|-----------|
+| `tooltip`     | Tooltip display mode: `none`, `always`, `hover`, `focus`, `active` | `active`  |
+| `minRange`    | Minimum distance between handles                                   | —         |
+| `maxRange`    | Maximum distance between handles                                   | —         |
+| `clickable`   | Allow changes by clicking on the slider                            | `true`    |
+| `disabled`    | Disable the component                                              | `false`   |
+| `label`       | Value postfix (e.g. `%`, `$`, `kg`)                                | —         |
+
+---
+
+## 📜 License
+
+This package is open-sourced software licensed under the [MIT License](https://raw.githubusercontent.com/rosamarsky/nova-range-filter/master/LICENSE).
